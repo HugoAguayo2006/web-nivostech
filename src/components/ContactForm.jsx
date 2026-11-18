@@ -64,7 +64,15 @@ export default function ContactForm() {
       await emailjs.send(
         EMAILJS_CONFIG.serviceId,
         EMAILJS_CONFIG.templateId,
-        trimmedValues,
+        {
+          ...trimmedValues,
+          // Support the sender variables used by EmailJS templates as well as the form names.
+          name: trimmedValues.user_name,
+          email: trimmedValues.user_email,
+          from_name: trimmedValues.user_name,
+          from_email: trimmedValues.user_email,
+          reply_to: trimmedValues.user_email,
+        },
         EMAILJS_CONFIG.publicKey
       );
       setValues(EMPTY_VALUES);
