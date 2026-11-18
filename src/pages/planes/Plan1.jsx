@@ -1,11 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import WhatsAppFloat from "../../WhatsAppFloat";
 import "./PlanPage.css";
 import { PROYECTOS } from "../../data.js";
 import { useEffect, useState } from "react";
 
-const EJEMPLOS_IDS = ["ing", "peh"];
+const EJEMPLOS_IDS = ["matel", "ing-tlajomulco", "ing", "peh"];
 
 // comentario prueba2
 const WHATSAPP_LINK =
@@ -104,21 +103,26 @@ function Plan1() {
                 <div className="price-card__top">
                   <h2 className="price-title">Inversión</h2>
                   <div className="price-row price-row--main">
-                    <span className="price-label">Precio</span>
-                    <span className="price-main">$9,048</span>
+                    <span className="price-label">Estimado</span>
+                    <span className="price-main">
+                      $12,000 <small className="price-tax">+ IVA</small>
+                    </span>
                   </div>
+                  <p className="price-estimate">
+                    Este precio es un estimado y puede ajustarse según la complejidad y el alcance del proyecto.
+                  </p>
                 </div>
 
                 <div className="price-split">
                   <div className="split-card">
                     <div className="split-title">Pago 1</div>
                     <div className="split-desc">Anticipo 50%</div>
-                    <div className="split-amount">$4,524</div>
+                    <div className="split-amount">$6,000 <small className="price-tax">+ IVA</small></div>
                   </div>
                   <div className="split-card">
                     <div className="split-title">Pago 2</div>
                     <div className="split-desc">Liquidación 50%</div>
-                    <div className="split-amount">$4,524</div>
+                    <div className="split-amount">$6,000 <small className="price-tax">+ IVA</small></div>
                   </div>
                 </div>
 
@@ -359,10 +363,9 @@ function Plan1() {
           {open && selected && <ProjectModal project={selected} onClose={closeProject} />}
         </section>
 
-        <WhatsAppFloat />
 
         <footer className="footer">
-          <p>© {new Date().getFullYear()} NIVO · Diseño y desarrollo de páginas web.</p>
+          <p>© {new Date().getFullYear()} NIVOSTECH · Diseño y desarrollo de páginas web.</p>
         </footer>
       </div>
     </>

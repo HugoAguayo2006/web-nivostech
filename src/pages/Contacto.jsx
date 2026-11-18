@@ -1,127 +1,65 @@
-import { useRef } from "react";
 import { Helmet } from "react-helmet-async";
-import emailjs from "emailjs-com";
-import WhatsAppFloat from "../WhatsAppFloat";
+import { Link } from "react-router-dom";
+import ContactForm from "../components/ContactForm";
+import { WHATSAPP_URL } from "../config/contact";
+import "./Contacto.css";
 
 function Contacto() {
-  const formRef = useRef(null);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const SERVICE_ID = "service_7l60jww";
-    const TEMPLATE_ID = "template_bclppip";
-    const PUBLIC_KEY = "pHDhdhRRjDQLVxpTY";
-
-    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY).then(
-      () => {
-        alert("Mensaje enviado correctamente 😄");
-        formRef.current.reset();
-      },
-      (error) => {
-        console.error(error);
-        alert("Hubo un error al enviar el mensaje 😢");
-      }
-    );
-  };
-
   return (
     <>
-      {/* ================= SEO ================= */}
       <Helmet>
         <title>Contacto | NIVOSTECH</title>
-        <meta
-          name="description"
-          content="Contáctanos para crear tu página web o proyecto digital. Estamos en Guadalajara, Jalisco. Escríbenos por WhatsApp o mediante nuestro formulario."
-        />
+        <meta name="description" content="Hablemos de tu página web o proyecto digital. Cuéntanos tu idea por WhatsApp o mediante nuestro formulario. NIVOSTECH, Guadalajara, Jalisco." />
         <link rel="canonical" href="https://www.nivostech.com/contacto" />
       </Helmet>
 
-      <div className="page">
-        <section className="page-section">
-          <div className="page-header">
-            <h1 className="page-title">Contacto</h1>
-            <p className="page-subtitle">
-              Estamos aquí para ayudarte. Ponte en contacto con nosotros y
-              hablemos de tu proyecto.
-            </p>
+      <main className="contact-page">
+        <div className="contact-shell">
+          <header className="contact-intro">
+            <span className="contact-eyebrow"><span aria-hidden="true" />CONTACTO · NIVOSTECH</span>
+            <h1>Tu próximo proyecto<br /><span>empieza con una idea.</span></h1>
+            <p>Cuéntanos qué tienes en mente. Te ayudamos a encontrar la mejor forma de convertirlo en una página web o plataforma para tu negocio.</p>
+          </header>
+
+          <div className="contact-layout">
+            <aside className="contact-sidebar" aria-label="Otras formas de contacto e información">
+              <section className="contact-whatsapp-panel">
+                <div className="contact-channel-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-5.5a9 9 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 3h.5a8.5 8.5 0 0 1 8 8v.5Z" /><path d="M8 10h8M8 14h5" /></svg>
+                </div>
+                <span className="contact-overline">¿PREFIERES PLATICAR?</span>
+                <h2>Vamos directo a tu idea.</h2>
+                <p>Resolvemos tus dudas y coordinamos una reunión por WhatsApp, presencial o en línea.</p>
+                <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="contact-whatsapp-link">Escribir por WhatsApp <span aria-hidden="true">↗</span></a>
+                <span className="contact-phone">+52 33 1039 2675</span>
+              </section>
+
+              <section className="contact-details-panel" aria-label="Ubicación y horario">
+                <div className="contact-detail">
+                  <span className="contact-detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></svg></span>
+                  <div><h3>Desde Guadalajara</h3><p>Jalisco, México.<br />Trabajamos contigo también en línea.</p></div>
+                </div>
+                <div className="contact-detail">
+                  <span className="contact-detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg></span>
+                  <div><h3>Horario de atención</h3><p>Siempre estamos disponibles.</p></div>
+                </div>
+              </section>
+              <Link className="contact-plans-link" to="/servicios">Explora nuestros planes <span aria-hidden="true">→</span></Link>
+            </aside>
+
+            <section className="contact-form-panel" aria-labelledby="contact-form-title">
+              <div className="contact-form-heading">
+                <span className="contact-overline">HABLEMOS DE TU PROYECTO</span>
+                <span className="contact-form-marker" aria-hidden="true">↗</span>
+                <h2 id="contact-form-title">Cuéntanos tu idea</h2>
+                <p>No necesitas tener todo definido. Empecemos por lo que quieres lograr.</p>
+              </div>
+              <ContactForm />
+            </section>
           </div>
-
-          <div className="contact-grid">
-            {/* Tarjeta WhatsApp */}
-            <div className="contact-card">
-              <h3>WhatsApp</h3>
-              <p>
-                Escríbenos por WhatsApp y platicamos sobre tu idea de forma rápida
-                y directa. Estamos disponibles para resolver tus dudas y
-                agendar una reunión.
-              </p>
-              <a
-                href="https://wa.me/523310392675?text=Hola,%20me%20gustaría%20saber%20más%20sobre%20NIVOSTECH%20y%20sus%20páginas%20web."
-                target="_blank"
-                rel="noreferrer"
-                className="whatsapp-btn-main"
-              >
-                Abrir WhatsApp
-              </a>
-            </div>
-
-            {/* Tarjeta Formulario */}
-            <div className="contact-card">
-              <h3>Formulario de contacto</h3>
-              <p style={{ marginBottom: "1rem", fontSize: "0.9rem" }}>
-                Completa el formulario y nos pondremos en contacto contigo a la
-                brevedad.
-              </p>
-
-              <form
-                ref={formRef}
-                onSubmit={handleSubmit}
-                className="contact-form"
-              >
-                <label>
-                  Nombre
-                  <input type="text" name="user_name" required />
-                </label>
-
-                <label>
-                  Correo
-                  <input type="email" name="user_email" required />
-                </label>
-
-                <label>
-                  Mensaje
-                  <textarea name="message" rows="4" required />
-                </label>
-
-                <button type="submit">Enviar mensaje</button>
-              </form>
-            </div>
-          </div>
-
-          <div className="contact-info">
-            <div className="info-card">
-              <h3>Ubicación</h3>
-              <p>Guadalajara, Jalisco, México</p>
-            </div>
-
-            <div className="info-card">
-              <h3>Horario de atención</h3>
-              <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
-              <p>Sábados: 10:00 AM - 2:00 PM</p>
-            </div>
-          </div>
-        </section>
-
-        <WhatsAppFloat />
-
-        <footer className="footer">
-          <p>
-            © {new Date().getFullYear()} NIVO · Diseño y desarrollo de páginas
-            web.
-          </p>
-        </footer>
-      </div>
+        </div>
+        <footer className="footer"><p>© {new Date().getFullYear()} NIVOSTECH · Diseño y desarrollo de páginas web.</p></footer>
+      </main>
     </>
   );
 }

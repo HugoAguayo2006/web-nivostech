@@ -1,5 +1,4 @@
 import { Helmet } from "react-helmet-async";
-import WhatsAppFloat from "../WhatsAppFloat";
 import "./Nosotros.css";
 import { Link } from "react-router-dom";
 
@@ -242,7 +241,6 @@ export default function Nosotros() {
           </div>
         </section>
 
-        <WhatsAppFloat />
       </main>
     </>
   );

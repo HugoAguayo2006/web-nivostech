@@ -1,10 +1,10 @@
-export default function WhatsAppFloat() {
-  const url = "https://wa.me/523310392675?text=Hola,%20me%20gustaría%20saber%20más%20sobre%20NIVOSTECH%20y%20sus%20páginas%20web.";
+import { WHATSAPP_URL } from "./config/contact";
 
+export default function WhatsAppFloat() {
   return (
     <a
       className="whatsapp-float"
-      href={url}
+      href={WHATSAPP_URL}
       target="_blank"
       rel="noreferrer"
       aria-label="Contactar por WhatsApp"

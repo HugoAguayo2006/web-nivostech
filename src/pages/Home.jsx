@@ -1,8 +1,7 @@
-import { useRef } from "react";
+import ContactForm from "../components/ContactForm";
+import { WHATSAPP_URL } from "../config/contact";
 import { Helmet } from "react-helmet-async";
-import emailjs from "emailjs-com";
 import { Link } from "react-router-dom";
-import WhatsAppFloat from "../WhatsAppFloat";
 import StatsSection from "../components/landing/StatsSection";
 import ServicesSection from "../components/landing/ServicesSection";
 import FeaturedProjects from "../components/landing/FeaturedProjects";
@@ -15,27 +14,6 @@ import Testimonials from "../components/landing/Testimonials";
 import MENU from "../components/landing/RestaurantSection";
 
 function Home() {
-  const formRef = useRef(null);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const SERVICE_ID = "service_7l60jww";
-    const TEMPLATE_ID = "template_bclppip";
-    const PUBLIC_KEY = "pHDhdhRRjDQLVxpTY";
-
-    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY).then(
-      () => {
-        alert("Mensaje enviado correctamente 😄");
-        formRef.current.reset();
-      },
-      (error) => {
-        console.error(error);
-        alert("Hubo un error al enviar el mensaje 😢");
-      }
-    );
-  };
-
   return (
     <>
       {/* ================= SEO ================= */}
@@ -152,7 +130,7 @@ function Home() {
                 y directa.
               </p>
               <a
-                href="https://wa.me/523310392675?text=Hola,%20me%20gustaría%20saber%20más%20sobre%20NIVOSTECH%20y%20sus%20páginas%20web."
+                href={WHATSAPP_URL}
                 target="_blank"
                 rel="noreferrer"
                 className="whatsapp-btn-main"
@@ -164,31 +142,11 @@ function Home() {
             {/* Tarjeta Formulario */}
             <div className="contact-card">
               <h3>Formulario de contacto</h3>
-              <form
-                ref={formRef}
-                onSubmit={handleSubmit}
-                className="contact-form"
-              >
-                <label>
-                  Nombre
-                  <input type="text" name="user_name" required />
-                </label>
-                <label>
-                  Correo
-                  <input type="email" name="user_email" required />
-                </label>
-                <label>
-                  Mensaje
-                  <textarea name="message" rows="4" required />
-                </label>
-                <button type="submit">Enviar mensaje</button>
-              </form>
+              <ContactForm />
             </div>
           </div>
         </section>
 
-        {/* WhatsApp flotante */}
-        <WhatsAppFloat />
 
         {/* FOOTER */}
         <footer className="footer">

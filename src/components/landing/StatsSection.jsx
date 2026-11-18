@@ -7,7 +7,7 @@ export default function StatsSection() {
       label: "Proyectos Entregados",
     },
     {
-      number: "+5000",
+      number: "+80,000",
       label: "Personas Alcanzadas",
     },
     {

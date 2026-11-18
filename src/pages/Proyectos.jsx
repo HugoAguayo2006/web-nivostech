@@ -81,7 +81,7 @@ export default function Proyectos() {
                 <div className="metric-label">Proyectos</div>
               </div>
               <div className="metric">
-                <div className="metric-num">+5000</div>
+                <div className="metric-num">+80,000</div>
                 <div className="metric-label">Personas alcanzadas</div>
               </div>
               <div className="metric">
@@ -121,7 +121,7 @@ export default function Proyectos() {
                 onClick={() => openProject(p)}
                 type="button"
               >
-                <div className="project-media">
+                <div className={`project-media${p.coverFit === "contain" ? " project-media--contain" : ""}`}>
                   <img
                     src={p.cover}
                     alt={p.title}
@@ -212,6 +212,9 @@ function ProjectModal({ project, onClose }) {
                 <span className="badge">{project.type}</span>
                 <span className="badge soft">{project.year}</span>
                 <span className="badge soft">{project.tag}</span>
+                {project.status && (
+                  <span className="badge soft">{project.status}</span>
+                )}
               </div>
 
               <h3 className="modal-title">{project.title}</h3>
@@ -285,7 +288,7 @@ function ProjectModal({ project, onClose }) {
               </div>
 
               <div className="modal-actions">
-                {project.liveUrl ? (
+                {project.liveUrl && (
                   <a
                     className="projects-btn primary"
                     href={project.liveUrl}
@@ -294,7 +297,31 @@ function ProjectModal({ project, onClose }) {
                   >
                     Visitar sitio
                   </a>
-                ) : (
+                )}
+
+                {project.videoUrl && (
+                  <a
+                    className="projects-btn ghost"
+                    href={project.videoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Ver demo
+                  </a>
+                )}
+
+                {project.repositoryUrl && (
+                  <a
+                    className="projects-btn ghost"
+                    href={project.repositoryUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Ver repositorio
+                  </a>
+                )}
+
+                {!project.liveUrl && !project.videoUrl && !project.repositoryUrl && (
                   <span className="private-note">
                     Proyecto privado (sin enlace público)
                   </span>

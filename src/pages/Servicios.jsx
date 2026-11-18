@@ -1,6 +1,5 @@
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import WhatsAppFloat from "../WhatsAppFloat";
 import Plan1 from "./planes/Plan1";
 import Plan2 from "./planes/Plan2";
 import Plan3 from "./planes/Plan3";
@@ -152,7 +151,7 @@ function Servicios() {
                   <li>Creación y publicación de contenido</li>
                   <li>Análisis de métricas y reportes mensuales</li>
                   <li>Estrategia de crecimiento y engagement</li>
-                  <li>Pago mensual: $2,500 por 10 meses</li>
+                  <li>Pago mensual: $2,500 por 12 meses</li>
                 </ul>
               </div>
 
@@ -222,11 +221,10 @@ function Servicios() {
 
         </section>
 
-        <WhatsAppFloat />
 
         <footer className="footer">
           <p>
-            © {new Date().getFullYear()} NIVO · Diseño y desarrollo de páginas
+            © {new Date().getFullYear()} NIVOSTECH · Diseño y desarrollo de páginas
             web.
           </p>
         </footer>

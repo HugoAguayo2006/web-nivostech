@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import WhatsAppFloat from "../../WhatsAppFloat";
 import "./PlanPage.css";
 import { PROYECTOS } from "../../data.js";
 import { useEffect, useState } from "react";
@@ -370,10 +369,9 @@ function PlanMenu() {
           )}
         </section>
 
-        <WhatsAppFloat />
 
         <footer className="footer">
-          <p>© {new Date().getFullYear()} NIVO · Diseño y desarrollo de páginas web.</p>
+          <p>© {new Date().getFullYear()} NIVOSTECH · Diseño y desarrollo de páginas web.</p>
         </footer>
       </div>
     </>

@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import Navbar from "./components/Navbar/Navbar";
 import ScrollToTop from "./components/ScrollToTop";
 import PageTransition from "./components/PageTransition";
+import WhatsAppFloat from "./WhatsAppFloat";
 
 import Home from "./pages/Home";
 import Nosotros from "./pages/Nosotros";
@@ -42,7 +43,7 @@ export default function App() {
 
         <meta
           name="description"
-          content="NIVOS TECH ofrece soluciones tecnológicas: desarrollo web, innovación digital y servicios a la medida."
+          content="NIVOSTECH ofrece soluciones tecnológicas: desarrollo web, innovación digital y servicios a la medida."
         />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="NIVOSTECH" />
@@ -78,6 +79,7 @@ export default function App() {
       <ScrollToTop />
       <Navbar />
       <AppRoutes />
+      <WhatsAppFloat />
     </>
   );
 }

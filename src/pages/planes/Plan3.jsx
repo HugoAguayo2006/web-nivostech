@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import WhatsAppFloat from "../../WhatsAppFloat";
 import "./PlanPage.css";
 import { PROYECTOS } from "../../data.js";
 import { useEffect, useState } from "react";
@@ -8,7 +7,7 @@ import { useEffect, useState } from "react";
 const EJEMPLOS_IDS = ["colonial", "ing"];
 
 const WHATSAPP_LINK =
-  "https://wa.me/523310392675?text=Hola%20NIVOSTECH%2C%20me%20interesa%20el%20Plan%203%20(Sitio%20%2B%20Redes%20Sociales).%20Quiero%20informaci%C3%B3n%20del%20paquete%20mensual%20de%20%242%2C500%20por%2010%20meses.";
+  "https://wa.me/523310392675?text=Hola%20NIVOSTECH%2C%20me%20interesa%20el%20Plan%203%20(Sitio%20%2B%20Redes%20Sociales).%20Quiero%20informaci%C3%B3n%20del%20paquete%20mensual%20de%20%242%2C500%20por%2012%20meses.";
 
 function Plan3() {
   // ====== EJEMPLOS (filtra por IDs) ======
@@ -47,7 +46,7 @@ function Plan3() {
         <title>Plan 3: Sitio + Redes Sociales | Servicios | NIVOSTECH</title>
         <meta
           name="description"
-          content="Plan 3 de NIVOSTECH: Servicio completo de manejo de redes sociales + página web gratis. Incluye gestión de contenido, publicación, análisis y estrategia de crecimiento. Pago mensual de $2,500 por 10 meses."
+          content="Plan 3 de NIVOSTECH: Servicio completo de manejo de redes sociales + página web gratis. Incluye gestión de contenido, publicación, análisis y estrategia de crecimiento. Pago mensual de $2,500 por 12 meses."
         />
         <link rel="canonical" href="https://www.nivostech.com/servicios/plan-3" />
       </Helmet>
@@ -78,7 +77,7 @@ function Plan3() {
                   </div>
                   <div className="kpi">
                     <span className="kpi-label">Contrato</span>
-                    <span className="kpi-value">10 meses</span>
+                    <span className="kpi-value">12 meses</span>
                   </div>
                   <div className="kpi">
                     <span className="kpi-label">Bonus</span>
@@ -118,12 +117,12 @@ function Plan3() {
 
                   <div className="price-row">
                     <span className="price-label">Duración</span>
-                    <span style={{ fontWeight: 800 }}>10 meses</span>
+                    <span style={{ fontWeight: 800 }}>12 meses</span>
                   </div>
 
                   <div className="price-row">
                     <span className="price-label">Total</span>
-                    <span style={{ fontWeight: 900 }}>$25,000</span>
+                    <span style={{ fontWeight: 900 }}>$30,000</span>
                   </div>
 
                   <div className="price-chip">WEB GRATIS</div>
@@ -133,7 +132,7 @@ function Plan3() {
                   <div className="split-card">
                     <div className="split-title">Incluye</div>
                     <div className="split-desc">Gestión mensual</div>
-                    <div className="split-amount">10 meses</div>
+                    <div className="split-amount">12 meses</div>
                   </div>
                   <div className="split-card">
                     <div className="split-title">Bonus</div>
@@ -386,7 +385,7 @@ function Plan3() {
               <div className="reqs">
                 <div className="reqs-title">Para comenzar se necesita:</div>
                 <ul className="reqs-list">
-                  <li>Pago mensual de $2,500 por transferencia</li>
+                  <li>Pago mensual de $2,500 durante 12 meses por transferencia</li>
                   <li>INE</li>
                   <li>Constancia de situación fiscal (si requieres factura)</li>
                   <li>Acceso a cuentas de redes sociales</li>
@@ -422,10 +421,9 @@ function Plan3() {
           )}
         </section>
 
-        <WhatsAppFloat />
 
         <footer className="footer">
-          <p>© {new Date().getFullYear()} NIVO · Diseño y desarrollo de páginas web.</p>
+          <p>© {new Date().getFullYear()} NIVOSTECH · Diseño y desarrollo de páginas web.</p>
         </footer>
       </div>
     </>

@@ -241,6 +241,7 @@
   background: transparent;
   cursor: pointer;
   text-align: left;
+  color: #f8fafc;
 }
 
 .project-media {
@@ -263,6 +264,19 @@
 .project-card:hover .project-img {
   transform: scale(1.06);
   filter: saturate(1.15) contrast(1.05);
+}
+
+.project-media--contain {
+  background: #0f172a;
+}
+
+.project-media--contain .project-img {
+  object-fit: contain;
+  padding: 1rem;
+}
+
+.project-media--contain .project-overlay {
+  background: linear-gradient(180deg, rgba(2, 6, 23, 0.15) 20%, rgba(2, 6, 23, 0.96) 85%);
 }
 
 .project-overlay {
@@ -294,6 +308,7 @@
   background: rgba(255, 255, 255, 0.55);
   font-weight: 900;
   font-size: 0.82rem;
+  color: #0f172a;
 }
 
 .badge.soft {

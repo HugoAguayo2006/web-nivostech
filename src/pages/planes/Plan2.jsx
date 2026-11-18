@@ -1,18 +1,17 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import WhatsAppFloat from "../../WhatsAppFloat";
 import "./PlanPage.css";
 import { PROYECTOS } from "../../data.js";
 import { useEffect, useState } from "react";
 
-const EJEMPLOS_IDS = ["colonial", "smart-mirror", "omega"];
+const EJEMPLOS_IDS = ["oviss", "truequetec", "run-dashboard", "chalendar", "chatify", "courier-ai"];
 
 const WHATSAPP_LINK =
   "https://wa.me/523310392675?text=Hola%20NIVOSTECH%2C%20me%20interesa%20el%20Plan%202%20(Sitio%20Profesional%20con%20backend%20y%20base%20de%20datos).%20%C2%BFC%C3%B3mo%20empezamos%3F";
 
 function Plan2() {
-  // ====== EJEMPLOS (filtra por IDs) ======
-  const ejemplos = (PROYECTOS || []).filter((p) => EJEMPLOS_IDS.includes(p.id));
+  // ====== EJEMPLOS (en el orden seleccionado) ======
+  const ejemplos = EJEMPLOS_IDS.map((id) => PROYECTOS.find((p) => p.id === id)).filter(Boolean);
 
   // ====== MODAL (igual que Proyectos) ======
   const [open, setOpen] = useState(false);
@@ -118,22 +117,27 @@ function Plan2() {
                 <div className="price-card__top">
                   <h2 className="price-title">Inversión</h2>
                   <div className="price-row price-row--main">
-                    <span className="price-label">Precio</span>
-                    <span className="price-main">$15,080</span>
+                    <span className="price-label">Estimado</span>
+                    <span className="price-main">
+                      $24,000 <small className="price-tax">+ IVA</small>
+                    </span>
                   </div>
+                  <p className="price-estimate">
+                    Este precio es un estimado y puede ajustarse según la complejidad y el alcance del proyecto.
+                  </p>
                 </div>
 
                 <div className="price-split">
                   <div className="split-card">
                     <div className="split-title">Pago 1</div>
                     <div className="split-desc">Anticipo 50%</div>
-                    <div className="split-amount">$7,540</div>
+                    <div className="split-amount">$12,000 <small className="price-tax">+ IVA</small></div>
                   </div>
 
                   <div className="split-card">
                     <div className="split-title">Pago 2</div>
                     <div className="split-desc">Liquidación 50%</div>
-                    <div className="split-amount">$7,540</div>
+                    <div className="split-amount">$12,000 <small className="price-tax">+ IVA</small></div>
                   </div>
                 </div>
 
@@ -189,7 +193,7 @@ function Plan2() {
                       onClick={() => openProject(p)}
                     >
                       <div className="ejemplo-cover">
-                        <img src={p.cover} alt={p.title} loading="lazy" />
+                        <img src={p.cover} alt={p.title} loading="lazy" style={{ objectFit: p.coverFit || "cover" }} />
                       </div>
 
                       <div className="ejemplo-body">
@@ -388,10 +392,9 @@ function Plan2() {
           )}
         </section>
 
-        <WhatsAppFloat />
 
         <footer className="footer">
-          <p>© {new Date().getFullYear()} NIVO · Diseño y desarrollo de páginas web.</p>
+          <p>© {new Date().getFullYear()} NIVOSTECH · Diseño y desarrollo de páginas web.</p>
         </footer>
       </div>
     </>
@@ -490,11 +493,25 @@ function ProjectModal({ project, onClose }) {
               </div>
 
               <div className="modal-actions">
-                {project.liveUrl ? (
+                {project.liveUrl && (
                   <a className="projects-btn primary" href={project.liveUrl} target="_blank" rel="noreferrer">
                     Visitar sitio
                   </a>
-                ) : (
+                )}
+
+                {project.videoUrl && (
+                  <a className="projects-btn ghost" href={project.videoUrl} target="_blank" rel="noreferrer">
+                    Ver demo
+                  </a>
+                )}
+
+                {project.repositoryUrl && (
+                  <a className="projects-btn ghost" href={project.repositoryUrl} target="_blank" rel="noreferrer">
+                    Ver repositorio
+                  </a>
+                )}
+
+                {!project.liveUrl && !project.videoUrl && !project.repositoryUrl && (
                   <span className="private-note">Proyecto privado (sin enlace público)</span>
                 )}
 
