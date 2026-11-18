@@ -1,11 +1,15 @@
+import { useTranslation } from "react-i18next";
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import LanguageSwitcher from "./LanguageSwitcher";
 import "./Navbar.css";
 
 const Navbar = () => {
+  const { t } = useTranslation();
   const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mobileMenuKey, setMobileMenuKey] = useState(null);
   const location = useLocation();
+  const isMobileMenuOpen = mobileMenuKey === location.key;
   const timeoutRef = useRef(null);
   const dropdownRef = useRef(null);
 
@@ -37,22 +41,18 @@ const Navbar = () => {
     };
   }, []);
 
-  // Cerrar menú móvil cuando cambia la ruta
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [location.pathname]);
-
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setMobileMenuKey(isMobileMenuOpen ? null : location.key);
   };
 
-  const handleMobileServicesClick = (e) => {
-    // En móviles, solo usar clic, no hover
-    if (window.innerWidth <= 768) {
-      e.preventDefault();
-      setIsServicesOpen(!isServicesOpen);
-    }
-  };
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setMobileMenuKey(null);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [isMobileMenuOpen]);
 
   return (
     <>
@@ -63,51 +63,47 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div 
           className="mobile-menu-overlay"
-          onClick={() => setIsMobileMenuOpen(false)}
+          onClick={() => setMobileMenuKey(null)}
         ></div>
       )}
       
       <nav className={`navbar ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`}>
         <Link to="/" className="logo">
-          <img src="/logos/logonivos3.webp" alt="NIVOSTECH" className="logo-left" />
-          <img src="/logos/logonivos4.png" alt="NIVOSTECH" className="logo-right" />
+          <img src="/logos/logonivos3.webp" alt="" className="logo-left" />
+          <span className="logo-wordmark">NIVOSTECH</span>
         </Link>
 
         {/* Botón hamburguesa para móvil */}
         <button 
           className={`mobile-menu-toggle ${isMobileMenuOpen ? 'active' : ''}`}
           onClick={toggleMobileMenu}
-          aria-label="Toggle menu"
+          aria-label={isMobileMenuOpen ? t("Cerrar menú") : t("Abrir menú")}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="navbar-links"
         >
           <span></span>
           <span></span>
           <span></span>
         </button>
 
-      <div className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+      <div id="navbar-links" className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
         <Link
           to="/"
           className={isActive("/") ? "nav-link active" : "nav-link"}
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-          Inicio
-        </Link>
+          onClick={() => setMobileMenuKey(null)}
+        >{t("Inicio")}</Link>
 
         <Link
           to="/proyectos"
           className={isActive("/proyectos") ? "nav-link active" : "nav-link"}
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-          Nuestros Proyectos
-        </Link>
+          onClick={() => setMobileMenuKey(null)}
+        >{t("Nuestros Proyectos")}</Link>
 
         <Link
           to="/nosotros"
           className={isActive("/nosotros") ? "nav-link active" : "nav-link"}
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-          Nosotros
-        </Link>
+          onClick={() => setMobileMenuKey(null)}
+        >{t("Nosotros")}</Link>
 
         <div
           ref={dropdownRef}
@@ -129,12 +125,10 @@ const Navbar = () => {
                 } else {
                   // Si se hace clic en el texto, navegar normalmente
                   setIsServicesOpen(false);
-                  setIsMobileMenuOpen(false);
+                  setMobileMenuKey(null);
                 }
               }}
-            >
-              Servicios
-              <span 
+            >{t("Servicios")}<span
                 className={`dropdown-arrow ${isServicesOpen ? 'open' : ''}`}
                 onClick={(e) => {
                   e.preventDefault();
@@ -158,43 +152,35 @@ const Navbar = () => {
                 className="dropdown-item"
                 onClick={() => {
                   setIsServicesOpen(false);
-                  setIsMobileMenuOpen(false);
+                  setMobileMenuKey(null);
                 }}
-              >
-                Sitio web simple 
-              </Link>
+              >{t("Sitio web simple")}</Link>
               <Link
                 to="/servicios/plan-2"
                 className="dropdown-item"
                 onClick={() => {
                   setIsServicesOpen(false);
-                  setIsMobileMenuOpen(false);
+                  setMobileMenuKey(null);
                 }}
-              >
-                Sitio web complejo
-              </Link>
+              >{t("Sitio web complejo")}</Link>
 
               <Link
                 to="/servicios/plan-3"
                 className="dropdown-item"
                 onClick={() => {
                   setIsServicesOpen(false);
-                  setIsMobileMenuOpen(false);
+                  setMobileMenuKey(null);
                 }}
-              >
-                Sitio + Redes Sociales
-              </Link>
+              >{t("Sitio + Redes Sociales")}</Link>
 
               <Link
                 to="/servicios/plan-menu"
                 className="dropdown-item"
                 onClick={() => {
                   setIsServicesOpen(false);
-                  setIsMobileMenuOpen(false);
+                  setMobileMenuKey(null);
                 }}
-              >
-                Menú Digital
-              </Link>
+              >{t("Menú Digital")}</Link>
             </div>
           )}
         </div>
@@ -202,19 +188,23 @@ const Navbar = () => {
         <Link
           to="/contacto"
           className={isActive("/contacto") ? "nav-link active" : "nav-link"}
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-          Contacto
-        </Link>
+          onClick={() => setMobileMenuKey(null)}
+        >{t("Contacto")}</Link>
+        <div className="nav-language-mobile">
+          <LanguageSwitcher />
+        </div>
       </div>
 
-      <Link 
-        to="/contacto" 
+      <div className="nav-actions">
+        <div className="nav-language-desktop">
+          <LanguageSwitcher />
+        </div>
+        <Link
+        to="/contacto"
         className="cta-button"
-        onClick={() => setIsMobileMenuOpen(false)}
-      >
-        Cotizar Proyecto
-      </Link>
+        onClick={() => setMobileMenuKey(null)}
+        >{t("Cotizar Proyecto")}</Link>
+      </div>
     </nav>
     </>
   );

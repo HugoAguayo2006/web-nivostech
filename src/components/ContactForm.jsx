@@ -1,6 +1,7 @@
+import { useTranslation } from "react-i18next";
 import { useId, useRef, useState } from "react";
 import emailjs from "emailjs-com";
-import { EMAILJS_CONFIG, WHATSAPP_URL } from "../config/contact";
+import { EMAILJS_CONFIG, getWhatsAppUrl } from "../config/contact";
 import "./ContactForm.css";
 
 const EMPTY_VALUES = { user_name: "", user_email: "", message: "" };
@@ -17,6 +18,7 @@ function validateField(name, value) {
 }
 
 export default function ContactForm() {
+  const { t } = useTranslation();
   const id = useId();
   const formRef = useRef(null);
   const submittingRef = useRef(false);
@@ -89,42 +91,41 @@ export default function ContactForm() {
   });
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className="inquiry-form" noValidate aria-busy={sending} aria-label="Formulario de contacto">
+    <form ref={formRef} onSubmit={handleSubmit} className="inquiry-form" noValidate aria-busy={sending} aria-label={t("Formulario de contacto")}>
       <div className="inquiry-fields">
         <div className="inquiry-field">
-          <label htmlFor={`${id}-user_name`}>Tu nombre</label>
-          <input {...fieldProps("user_name")} type="text" autoComplete="name" maxLength={100} placeholder="¿Cómo te llamas?" />
-          {errors.user_name && <p className="inquiry-error" id={`${id}-user_name-error`}>{errors.user_name}</p>}
+          <label htmlFor={`${id}-user_name`}>{t("Tu nombre")}</label>
+          <input {...fieldProps("user_name")} type="text" autoComplete="name" maxLength={100} placeholder={t("¿Cómo te llamas?")} />
+          {errors.user_name && <p className="inquiry-error" id={`${id}-user_name-error`}>{t(errors.user_name)}</p>}
         </div>
         <div className="inquiry-field">
-          <label htmlFor={`${id}-user_email`}>Correo electrónico</label>
-          <input {...fieldProps("user_email")} type="email" autoComplete="email" maxLength={254} placeholder="nombre@empresa.com" autoCapitalize="none" spellCheck={false} />
-          {errors.user_email && <p className="inquiry-error" id={`${id}-user_email-error`}>{errors.user_email}</p>}
+          <label htmlFor={`${id}-user_email`}>{t("Correo electrónico")}</label>
+          <input {...fieldProps("user_email")} type="email" autoComplete="email" maxLength={254} placeholder={t("nombre@empresa.com")} autoCapitalize="none" spellCheck={false} />
+          {errors.user_email && <p className="inquiry-error" id={`${id}-user_email-error`}>{t(errors.user_email)}</p>}
         </div>
       </div>
       <div className="inquiry-field">
-        <label htmlFor={`${id}-message`}>Cuéntanos sobre tu proyecto</label>
-        <textarea {...fieldProps("message")} rows={6} maxLength={3000} placeholder="¿Qué hace tu negocio y qué te gustaría lograr con tu página o plataforma?" aria-describedby={errors.message ? `${id}-message-error` : `${id}-message-hint`} />
+        <label htmlFor={`${id}-message`}>{t("Cuéntanos sobre tu proyecto")}</label>
+        <textarea {...fieldProps("message")} rows={6} maxLength={3000} placeholder={t("¿Qué hace tu negocio y qué te gustaría lograr con tu página o plataforma?")} aria-describedby={errors.message ? `${id}-message-error` : `${id}-message-hint`} />
         {errors.message ? (
-          <p className="inquiry-error" id={`${id}-message-error`}>{errors.message}</p>
+          <p className="inquiry-error" id={`${id}-message-error`}>{t(errors.message)}</p>
         ) : (
-          <p className="inquiry-hint" id={`${id}-message-hint`}>Puedes incluir tu idea, las funciones que necesitas y la fecha que tienes en mente.</p>
+          <p className="inquiry-hint" id={`${id}-message-hint`}>{t("Puedes incluir tu idea, las funciones que necesitas y la fecha que tienes en mente.")}</p>
         )}
       </div>
       <div className="inquiry-feedback" aria-live="polite" aria-atomic="true">
         {status === "success" && (
-          <p className="inquiry-status inquiry-status--success" role="status">Tu mensaje se envió correctamente. Te responderemos al correo que compartiste.</p>
+          <p className="inquiry-status inquiry-status--success" role="status">{t("Tu mensaje se envió correctamente. Te responderemos al correo que compartiste.")}</p>
         )}
         {status === "error" && (
-          <p className="inquiry-status inquiry-status--error" role="alert">
-            No pudimos enviar tu mensaje. Tus datos siguen aquí para que lo intentes de nuevo. También puedes <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">escribirnos por WhatsApp</a>.
+          <p className="inquiry-status inquiry-status--error" role="alert">{t("No pudimos enviar tu mensaje. Tus datos siguen aquí para que lo intentes de nuevo. También puedes")} <a href={getWhatsAppUrl(t("Hola, me gustaría saber más sobre NIVOSTECH y sus páginas web."))} target="_blank" rel="noreferrer">{t("escribirnos por WhatsApp")}</a>.
           </p>
         )}
       </div>
       <div className="inquiry-footer">
-        <p>Todos los campos son obligatorios.<br />Usaremos tus datos para responder a tu consulta.</p>
+        <p>{t("Todos los campos son obligatorios.")}<br />{t("Usaremos tus datos para responder a tu consulta.")}</p>
         <button type="submit" className="inquiry-submit" disabled={sending}>
-          {sending ? "Enviando mensaje…" : "Enviar mensaje"}
+          {sending ? t("Enviando mensaje…") : t("Enviar mensaje")}
           {sending ? <span className="inquiry-spinner" aria-hidden="true" /> : <span aria-hidden="true">↗</span>}
         </button>
       </div>

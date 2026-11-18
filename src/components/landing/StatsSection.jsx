@@ -1,22 +1,24 @@
+import { useTranslation } from "react-i18next";
 import "./StatsSection.css";
 
 export default function StatsSection() {
+  const { t } = useTranslation();
   const stats = [
     {
       number: "+6",
-      label: "Proyectos Entregados",
+      label: t("Proyectos Entregados"),
     },
     {
       number: "+80,000",
-      label: "Personas Alcanzadas",
+      label: t("Personas Alcanzadas"),
     },
     {
       number: "+2",
-      label: "Años de Experiencia",
+      label: t("Años de Experiencia"),
     },
     {
       number: "100%",
-      label: "Sitios Responsivos",
+      label: t("Sitios Responsivos"),
     },
   ];
 

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 // src/pages/Proyectos.jsx
 import { useMemo, useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -8,6 +9,7 @@ import "../components/Projects/Projects.css";
 const FILTERS = ["Todos", "Institucional", "Tecnológico", "Organización", "Web App","Menú Digital"];
 
 export default function Proyectos() {
+  const { t } = useTranslation();
   const [active, setActive] = useState("Todos");
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(null);
@@ -45,10 +47,10 @@ export default function Proyectos() {
     <>
       {/* ================= SEO ================= */}
       <Helmet>
-        <title>Proyectos | NIVOSTECH</title>
+        <title>{t("Proyectos | NIVOSTECH")}</title>
         <meta
           name="description"
-          content="Explora el portafolio de NIVOSTECH: sitios web con diseño premium, alto performance y enfoque en resultados. Da clic en cada proyecto para ver el caso completo."
+          content={t("Explora el portafolio de NIVOSTECH: sitios web con diseño premium, alto performance y enfoque en resultados. Da clic en cada proyecto para ver el caso completo.")}
         />
         <link rel="canonical" href="https://www.nivostech.com/proyectos" />
       </Helmet>
@@ -58,35 +60,29 @@ export default function Proyectos() {
         <header className="projects-hero">
           <div className="projects-hero-bg" />
           <div className="projects-hero-content">
-            <div className="projects-pill">Portafolio</div>
+            <div className="projects-pill">{t("Portafolio")}</div>
 
-            <h1 className="projects-title">
-              Nuestros <span>Proyectos</span>
+            <h1 className="projects-title">{t("Nuestros")} <span>{t("Proyectos")}</span>
             </h1>
 
-            <p className="projects-subtitle">
-              Sitios web reales con diseño premium, performance y enfoque en
-              resultados. Aquí no solo mostramos “bonito”: mostramos decisiones.
-            </p>
+            <p className="projects-subtitle">{t("Sitios web reales con diseño premium, performance y enfoque en resultados. Aquí no solo mostramos “bonito”: mostramos decisiones.")}</p>
 
             <div className="projects-hero-actions">
-              <Link className="projects-btn ghost" to="/contacto">
-                Agendar reunión
-              </Link>
+              <Link className="projects-btn ghost" to="/contacto">{t("Agendar reunión")}</Link>
             </div>
 
             <div className="projects-metrics">
               <div className="metric">
                 <div className="metric-num">+{PROYECTOS.length}</div>
-                <div className="metric-label">Proyectos</div>
+                <div className="metric-label">{t("Proyectos")}</div>
               </div>
               <div className="metric">
                 <div className="metric-num">+80,000</div>
-                <div className="metric-label">Personas alcanzadas</div>
+                <div className="metric-label">{t("Personas alcanzadas")}</div>
               </div>
               <div className="metric">
                 <div className="metric-num">+2</div>
-                <div className="metric-label">Años de experiencia</div>
+                <div className="metric-label">{t("Años de experiencia")}</div>
               </div>
             </div>
           </div>
@@ -102,14 +98,12 @@ export default function Proyectos() {
                 onClick={() => setActive(f)}
                 type="button"
               >
-                {f}
+                {t(f)}
               </button>
             ))}
           </div>
 
-          <div className="projects-hint">
-            Tip: haz clic en un proyecto para ver el caso completo.
-          </div>
+          <div className="projects-hint">{t("Tip: haz clic en un proyecto para ver el caso completo.")}</div>
         </div>
 
         {/* ====== GRID ====== */}
@@ -124,31 +118,30 @@ export default function Proyectos() {
                 <div className={`project-media${p.coverFit === "contain" ? " project-media--contain" : ""}`}>
                   <img
                     src={p.cover}
-                    alt={p.title}
+                    alt={t(p.title)}
                     loading="lazy"
                     className="project-img"
                   />
 
                   <div className="project-overlay">
                     <div className="project-overlay-top">
-                      <span className="badge">{p.type}</span>
+                      <span className="badge">{t(p.type)}</span>
                       <span className="badge soft">{p.year}</span>
                     </div>
 
                     <div className="project-overlay-bottom">
-                      <div className="project-name">{p.title}</div>
-                      <div className="project-short">{p.short}</div>
+                      <div className="project-name">{t(p.title)}</div>
+                      <div className="project-short">{t(p.short)}</div>
 
                       <div className="project-stack">
                         {p.stack.slice(0, 4).map((s) => (
                           <span key={s} className="stack-pill">
-                            {s}
+                            {t(s)}
                           </span>
                         ))}
                       </div>
 
-                      <div className="project-cta">
-                        Ver caso <span className="arrow">→</span>
+                      <div className="project-cta">{t("Ver caso")} <span className="arrow">→</span>
                       </div>
                     </div>
                   </div>
@@ -161,18 +154,11 @@ export default function Proyectos() {
         {/* ====== CTA FINAL ====== */}
         <div className="projects-final">
           <div className="final-card">
-            <h2 className="final-title">¿Tu proyecto puede ser el siguiente?</h2>
-            <p className="final-sub">
-              Lo armamos con diseño serio, velocidad real y estructura para
-              crecer.
-            </p>
+            <h2 className="final-title">{t("¿Tu proyecto puede ser el siguiente?")}</h2>
+            <p className="final-sub">{t("Lo armamos con diseño serio, velocidad real y estructura para crecer.")}</p>
             <div className="final-actions">
-              <Link className="projects-btn primary" to="/contacto">
-                Contáctanos
-              </Link>
-              <Link className="projects-btn ghost" to="/servicios">
-                Ver servicios
-              </Link>
+              <Link className="projects-btn primary" to="/contacto">{t("Contáctanos")}</Link>
+              <Link className="projects-btn ghost" to="/servicios">{t("Ver servicios")}</Link>
             </div>
           </div>
         </div>
@@ -188,6 +174,7 @@ export default function Proyectos() {
 
 /* ====== MODAL COMPONENT (con Lightbox) ====== */
 function ProjectModal({ project, onClose }) {
+  const { t } = useTranslation();
   const [zoomImage, setZoomImage] = useState(null);
 
   // ESC: si hay imagen en lightbox, cierra lightbox; si no, cierra modal
@@ -209,22 +196,22 @@ function ProjectModal({ project, onClose }) {
           <div className="modal-header">
             <div>
               <div className="modal-kicker">
-                <span className="badge">{project.type}</span>
+                <span className="badge">{t(project.type)}</span>
                 <span className="badge soft">{project.year}</span>
-                <span className="badge soft">{project.tag}</span>
+                <span className="badge soft">{t(project.tag)}</span>
                 {project.status && (
-                  <span className="badge soft">{project.status}</span>
+                  <span className="badge soft">{t(project.status)}</span>
                 )}
               </div>
 
-              <h3 className="modal-title">{project.title}</h3>
-              <p className="modal-sub">{project.short}</p>
+              <h3 className="modal-title">{t(project.title)}</h3>
+              <p className="modal-sub">{t(project.short)}</p>
             </div>
 
             <button
               className="modal-close"
               onClick={onClose}
-              aria-label="Cerrar"
+              aria-label={t("Cerrar")}
             >
               ✕
             </button>
@@ -237,7 +224,7 @@ function ProjectModal({ project, onClose }) {
                 className="modal-cover clickable"
                 onClick={() => setZoomImage(project.cover)}
               >
-                <img src={project.cover} alt={project.title} />
+                <img src={project.cover} alt={t(project.title)} />
               </div>
 
               {project.gallery?.length > 0 && (
@@ -258,20 +245,20 @@ function ProjectModal({ project, onClose }) {
 
             <div className="modal-right">
               <div className="case-block">
-                <h4>El reto</h4>
-                <p>{project.reto}</p>
+                <h4>{t("El reto")}</h4>
+                <p>{t(project.reto)}</p>
               </div>
 
               <div className="case-block">
-                <h4>La solución</h4>
-                <p>{project.solucion}</p>
+                <h4>{t("La solución")}</h4>
+                <p>{t(project.solucion)}</p>
               </div>
 
               <div className="case-block">
-                <h4>Resultados</h4>
+                <h4>{t("Resultados")}</h4>
                 <ul>
                   {project.resultados?.map((r) => (
-                    <li key={r}>{r}</li>
+                    <li key={r}>{t(r)}</li>
                   ))}
                 </ul>
               </div>
@@ -281,7 +268,7 @@ function ProjectModal({ project, onClose }) {
                 <div className="modal-stack">
                   {project.stack.map((s) => (
                     <span key={s} className="stack-pill">
-                      {s}
+                      {t(s)}
                     </span>
                   ))}
                 </div>
@@ -294,9 +281,7 @@ function ProjectModal({ project, onClose }) {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noreferrer"
-                  >
-                    Visitar sitio
-                  </a>
+                  >{t("Visitar sitio")}</a>
                 )}
 
                 {project.videoUrl && (
@@ -305,9 +290,7 @@ function ProjectModal({ project, onClose }) {
                     href={project.videoUrl}
                     target="_blank"
                     rel="noreferrer"
-                  >
-                    Ver demo
-                  </a>
+                  >{t("Ver demo")}</a>
                 )}
 
                 {project.repositoryUrl && (
@@ -316,20 +299,14 @@ function ProjectModal({ project, onClose }) {
                     href={project.repositoryUrl}
                     target="_blank"
                     rel="noreferrer"
-                  >
-                    Ver repositorio
-                  </a>
+                  >{t("Ver repositorio")}</a>
                 )}
 
                 {!project.liveUrl && !project.videoUrl && !project.repositoryUrl && (
-                  <span className="private-note">
-                    Proyecto privado (sin enlace público)
-                  </span>
+                  <span className="private-note">{t("Proyecto privado (sin enlace público)")}</span>
                 )}
 
-                <button className="projects-btn ghost" onClick={onClose}>
-                  Cerrar
-                </button>
+                <button className="projects-btn ghost" onClick={onClose}>{t("Cerrar")}</button>
               </div>
             </div>
           </div>
@@ -339,11 +316,11 @@ function ProjectModal({ project, onClose }) {
       {/* ====== LIGHTBOX ====== */}
       {zoomImage && (
         <div className="lightbox-backdrop" onClick={() => setZoomImage(null)}>
-          <img src={zoomImage} alt="Vista ampliada" />
+          <img src={zoomImage} alt={t("Vista ampliada")} />
           <button
             className="lightbox-close"
             onClick={() => setZoomImage(null)}
-            aria-label="Cerrar imagen"
+            aria-label={t("Cerrar imagen")}
           >
             ✕
           </button>

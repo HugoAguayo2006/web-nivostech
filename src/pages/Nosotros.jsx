@@ -1,18 +1,20 @@
+import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import "./Nosotros.css";
 import { Link } from "react-router-dom";
 
 export default function Nosotros() {
+  const { t } = useTranslation();
   const siteUrl = "https://www.nivostech.com";
   const pageUrl = `${siteUrl}/nosotros`;
 
   return (
     <>
       <Helmet>
-        <title>Nosotros | NIVOSTECH</title>
+        <title>{t("Nosotros | NIVOSTECH")}</title>
         <meta
           name="description"
-          content="NIVOSTECH es un estudio digital en Guadalajara. Diseñamos y desarrollamos páginas web modernas con enfoque en claridad, velocidad y resultados."
+          content={t("NIVOSTECH es un estudio digital en Guadalajara. Diseñamos y desarrollamos páginas web modernas con enfoque en claridad, velocidad y resultados.")}
         />
         <link rel="canonical" href={pageUrl} />
       </Helmet>
@@ -22,39 +24,27 @@ export default function Nosotros() {
         <header className="about-hero2">
           <div className="about-hero2-inner">
 
-            <h1 className="about-h1">
-              Hacemos webs que se ven bien,
-              <span className="about-h1-accent"> venden</span> y se mantienen
-              fáciles.
-            </h1>
+            <h1 className="about-h1">{t("Hacemos webs que se ven bien,")}<span className="about-h1-accent"> {t("venden")}</span> {t("y se mantienen fáciles.")}</h1>
 
-            <p className="about-lead">
-              NIVOSTECH diseña y desarrolla experiencias digitales claras, rápidas
-              y alineadas a objetivos reales: más confianza, más contactos, más
-              negocio.
-            </p>
+            <p className="about-lead">{t("NIVOSTECH diseña y desarrolla experiencias digitales claras, rápidas y alineadas a objetivos reales: más confianza, más contactos, más negocio.")}</p>
 
             <div className="about-hero2-actions">
-              <Link to="/contacto" className="about-btn about-btn-primary">
-              Cotizar mi página
-            </Link>
-             <Link to="/servicios" className="about-btn about-btn-primary">
-              Ver Servicios
-            </Link>
+              <Link to="/contacto" className="about-btn about-btn-primary">{t("Cotizar mi página")}</Link>
+             <Link to="/servicios" className="about-btn about-btn-primary">{t("Ver Servicios")}</Link>
             </div>
 
             <div className="about-stats">
               <div className="about-stat">
-                <div className="about-stat-kpi">+Rápido</div>
-                <div className="about-stat-label">Optimizado para rendimiento</div>
+                <div className="about-stat-kpi">{t("+Rápido")}</div>
+                <div className="about-stat-label">{t("Optimizado para rendimiento")}</div>
               </div>
               <div className="about-stat">
-                <div className="about-stat-kpi">+Claro</div>
-                <div className="about-stat-label">Mensaje directo y estructura</div>
+                <div className="about-stat-kpi">{t("+Claro")}</div>
+                <div className="about-stat-label">{t("Mensaje directo y estructura")}</div>
               </div>
               <div className="about-stat">
-                <div className="about-stat-kpi">+Seguro</div>
-                <div className="about-stat-label">Buenas prácticas y estabilidad</div>
+                <div className="about-stat-kpi">{t("+Seguro")}</div>
+                <div className="about-stat-label">{t("Buenas prácticas y estabilidad")}</div>
               </div>
             </div>
           </div>
@@ -68,54 +58,35 @@ export default function Nosotros() {
         <section className="about-section2">
           <div className="about-grid2">
             <div className="about-panel about-panel-story">
-              <h2 className="about-h2">Nuestra forma de trabajar</h2>
-              <p className="about-text">
-                No hacemos “páginas bonitas” y ya. Armamos una presencia digital
-                con intención: qué quieres que haga el usuario, qué te diferencia
-                y cómo lo comunicamos en segundos.
-              </p>
-              <p className="about-text">
-                Somos cercanos, claros y rápidos. Te guiamos sin términos
-                técnicos y con entregables concretos.
-              </p>
+              <h2 className="about-h2">{t("Nuestra forma de trabajar")}</h2>
+              <p className="about-text">{t("No hacemos “páginas bonitas” y ya. Armamos una presencia digital con intención: qué quieres que haga el usuario, qué te diferencia y cómo lo comunicamos en segundos.")}</p>
+              <p className="about-text">{t("Somos cercanos, claros y rápidos. Te guiamos sin términos técnicos y con entregables concretos.")}</p>
 
               <div className="about-pill-row">
-                <span className="about-pill">Diseño con intención</span>
-                <span className="about-pill">Velocidad y SEO</span>
-                <span className="about-pill">Contenido claro</span>
-                <span className="about-pill">Soporte real</span>
+                <span className="about-pill">{t("Diseño con intención")}</span>
+                <span className="about-pill">{t("Velocidad y SEO")}</span>
+                <span className="about-pill">{t("Contenido claro")}</span>
+                <span className="about-pill">{t("Soporte real")}</span>
               </div>
             </div>
 
             <div className="about-panel about-panel-why">
-              <h3 className="about-h3">Lo que cuidamos sí o sí</h3>
+              <h3 className="about-h3">{t("Lo que cuidamos sí o sí")}</h3>
 
               <ul className="about-checklist">
                 <li>
-                  <span className="about-check">✓</span>
-                  Estructura que guía al cliente a contactarte.
-                </li>
+                  <span className="about-check">✓</span>{t("Estructura que guía al cliente a contactarte.")}</li>
                 <li>
-                  <span className="about-check">✓</span>
-                  Diseño moderno, legible y adaptable a móvil.
-                </li>
+                  <span className="about-check">✓</span>{t("Diseño moderno, legible y adaptable a móvil.")}</li>
                 <li>
-                  <span className="about-check">✓</span>
-                  Carga rápida y buenas prácticas técnicas.
-                </li>
+                  <span className="about-check">✓</span>{t("Carga rápida y buenas prácticas técnicas.")}</li>
                 <li>
-                  <span className="about-check">✓</span>
-                  Mensaje y secciones alineadas a tu negocio.
-                </li>
+                  <span className="about-check">✓</span>{t("Mensaje y secciones alineadas a tu negocio.")}</li>
               </ul>
 
               <div className="about-mini-cta">
-                <p className="about-mini-cta-text">
-                  ¿Quieres que tu web te genere clientes sin “estarla explicando”?
-                </p>
-                <Link to="/contacto" className="about-btn about-btn-primary">
-                Hablemos →
-              </Link>
+                <p className="about-mini-cta-text">{t("¿Quieres que tu web te genere clientes sin “estarla explicando”?")}</p>
+                <Link to="/contacto" className="about-btn about-btn-primary">{t("Hablemos →")}</Link>
               </div>
             </div>
           </div>
@@ -174,49 +145,43 @@ export default function Nosotros() {
         <section className="about-section2">
           <div className="about-duo">
             <div className="about-panel">
-              <h2 className="about-h2">Misión</h2>
-              <p className="about-text">
-                Crear soluciones web claras y funcionales que ayuden a negocios y
-                proyectos a ganar visibilidad, confianza y clientes.
-              </p>
+              <h2 className="about-h2">{t("Misión")}</h2>
+              <p className="about-text">{t("Crear soluciones web claras y funcionales que ayuden a negocios y proyectos a ganar visibilidad, confianza y clientes.")}</p>
             </div>
 
             <div className="about-panel">
-              <h2 className="about-h2">Visión</h2>
-              <p className="about-text">
-                Ser un referente local en soluciones digitales, demostrando que
-                una web bien hecha puede ser simple, útil y profesional.
-              </p>
+              <h2 className="about-h2">{t("Visión")}</h2>
+              <p className="about-text">{t("Ser un referente local en soluciones digitales, demostrando que una web bien hecha puede ser simple, útil y profesional.")}</p>
             </div>
           </div>
 
           <div className="about-panel about-values2">
-            <h2 className="about-h2">Valores</h2>
+            <h2 className="about-h2">{t("Valores")}</h2>
 
             <div className="about-values-grid">
               <div className="about-value">
-                <div className="about-value-title">Simplicidad</div>
-                <div className="about-value-desc">Lo claro vende mejor.</div>
+                <div className="about-value-title">{t("Simplicidad")}</div>
+                <div className="about-value-desc">{t("Lo claro vende mejor.")}</div>
               </div>
 
               <div className="about-value">
-                <div className="about-value-title">Transparencia</div>
-                <div className="about-value-desc">Sin letras chiquitas.</div>
+                <div className="about-value-title">{t("Transparencia")}</div>
+                <div className="about-value-desc">{t("Sin letras chiquitas.")}</div>
               </div>
 
               <div className="about-value">
-                <div className="about-value-title">Cercanía</div>
-                <div className="about-value-desc">Trato humano y directo.</div>
+                <div className="about-value-title">{t("Cercanía")}</div>
+                <div className="about-value-desc">{t("Trato humano y directo.")}</div>
               </div>
 
               <div className="about-value">
-                <div className="about-value-title">Calidad</div>
-                <div className="about-value-desc">Detalles que se notan.</div>
+                <div className="about-value-title">{t("Calidad")}</div>
+                <div className="about-value-desc">{t("Detalles que se notan.")}</div>
               </div>
 
               <div className="about-value">
-                <div className="about-value-title">Compromiso</div>
-                <div className="about-value-desc">Nos metemos de verdad.</div>
+                <div className="about-value-title">{t("Compromiso")}</div>
+                <div className="about-value-desc">{t("Nos metemos de verdad.")}</div>
               </div>
             </div>
           </div>
@@ -225,18 +190,12 @@ export default function Nosotros() {
         {/* ================= CTA FINAL ================= */}
         <section className="about-cta">
           <div className="about-cta-inner">
-            <h2 className="about-cta-title">Listo para una web que sí te represente</h2>
-            <p className="about-cta-text">
-              Cuéntanos qué haces y te decimos la mejor ruta para tu página.
-            </p>
+            <h2 className="about-cta-title">{t("Listo para una web que sí te represente")}</h2>
+            <p className="about-cta-text">{t("Cuéntanos qué haces y te decimos la mejor ruta para tu página.")}</p>
             <div className="about-hero2-actions">
 
-              <Link to="/contacto" className="about-btn about-btn-primary">
-                Hablemos →
-              </Link>
-              <Link to="/servicios" className="about-btn about-btn-primary">
-                 Ver planes
-              </Link>
+              <Link to="/contacto" className="about-btn about-btn-primary">{t("Hablemos →")}</Link>
+              <Link to="/servicios" className="about-btn about-btn-primary">{t("Ver planes")}</Link>
             </div>
           </div>
         </section>

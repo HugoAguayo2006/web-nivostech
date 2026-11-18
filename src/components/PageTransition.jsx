@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion as Motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 
 function PageTransition({ children }) {
@@ -6,7 +6,7 @@ function PageTransition({ children }) {
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div
+      <Motion.div
         key={location.pathname}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -15,7 +15,7 @@ function PageTransition({ children }) {
         style={{ width: "100%", minHeight: "100vh" }}
       >
         {children}
-      </motion.div>
+      </Motion.div>
     </AnimatePresence>
   );
 }

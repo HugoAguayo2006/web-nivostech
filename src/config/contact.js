@@ -1,6 +1,6 @@
-export const WHATSAPP_URL =
-  "https://wa.me/523310392675?text=" +
-  encodeURIComponent("Hola, me gustaría saber más sobre NIVOSTECH y sus páginas web.");
+export function getWhatsAppUrl(message) {
+  return "https://wa.me/523310392675?text=" + encodeURIComponent(message);
+}
 
 // Public EmailJS identifiers; keep the template's existing variable names.
 export const EMAILJS_CONFIG = {

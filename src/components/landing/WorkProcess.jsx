@@ -1,30 +1,32 @@
+import { useTranslation } from "react-i18next";
 import "./WorkProcess.css";
 
 export default function WorkProcess() {
+  const { t } = useTranslation();
   const steps = [
     {
       number: "01",
-      title: "Reunión Inicial",
+      title: t("Reunión Inicial"),
       description:
-        "Platicamos sobre tu proyecto, objetivos y necesidades. Definimos el alcance y el plan adecuado para tu negocio.",
+        t("Platicamos sobre tu proyecto, objetivos y necesidades. Definimos el alcance y el plan adecuado para tu negocio."),
     },
     {
       number: "02",
-      title: "Diseño y Desarrollo",
+      title: t("Diseño y Desarrollo"),
       description:
-        "Creamos el diseño de tu sitio web y comenzamos el desarrollo. Te mantenemos informado en cada etapa del proceso.",
+        t("Creamos el diseño de tu sitio web y comenzamos el desarrollo. Te mantenemos informado en cada etapa del proceso."),
     },
     {
       number: "03",
-      title: "Revisión y Ajustes",
+      title: t("Revisión y Ajustes"),
       description:
-        "Revisamos juntos el resultado, hacemos los ajustes necesarios y nos aseguramos de que todo esté perfecto.",
+        t("Revisamos juntos el resultado, hacemos los ajustes necesarios y nos aseguramos de que todo esté perfecto."),
     },
     {
       number: "04",
-      title: "Entrega y Soporte",
+      title: t("Entrega y Soporte"),
       description:
-        "Entregamos tu sitio web listo para funcionar. Incluimos soporte técnico inicial para resolver cualquier duda.",
+        t("Entregamos tu sitio web listo para funcionar. Incluimos soporte técnico inicial para resolver cualquier duda."),
     },
   ];
 
@@ -32,11 +34,8 @@ export default function WorkProcess() {
     <section id="proceso" className="work-process-section">
       <div className="work-process-container">
         <div className="work-process-header">
-          <h2 className="work-process-title">Nuestro Proceso de Trabajo</h2>
-          <p className="work-process-subtitle">
-            Un proceso claro y transparente desde el inicio hasta la entrega de
-            tu proyecto.
-          </p>
+          <h2 className="work-process-title">{t("Nuestro Proceso de Trabajo")}</h2>
+          <p className="work-process-subtitle">{t("Un proceso claro y transparente desde el inicio hasta la entrega de tu proyecto.")}</p>
         </div>
 
         <div className="work-process-steps">

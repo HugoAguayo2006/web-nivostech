@@ -1,47 +1,49 @@
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import "./ServicesSection.css";
 
 export default function ServicesSection() {
+  const { t } = useTranslation();
   const services = [
     {
       id: "plan-1",
-      title: "Plan 1: Sitio web simple",
-      description: "Ideal para negocios que solo necesitan presencia profesional.",
+      title: t("Plan 1: Sitio web simple"),
+      description: t("Ideal para negocios que solo necesitan presencia profesional."),
       features: [
-        "Presencia profesional en internet",
+        t("Presencia profesional en internet"),
 
-"Página rápida y fácil de usar",
+t("Página rápida y fácil de usar"),
 
-"Diseño adaptable a cualquier dispositivo",
+t("Diseño adaptable a cualquier dispositivo"),
 
-"Opción económica para empezar",
+t("Opción económica para empezar"),
 
-"Base lista para crecer en el futuro"
+t("Base lista para crecer en el futuro")
       ],
       link: "/servicios/plan-1",
     },
     {
       id: "plan-2",
-      title: "Plan 2: Sitio web complejo",
-      description: "Ideal para negocios que necesitan un sistema más completo.",
+      title: t("Plan 2: Sitio web complejo"),
+      description: t("Ideal para negocios que necesitan un sistema más completo."),
       features: [
-        "Base de datos para guardar información",
-"Panel privado para administrar el sitio",
-"Blog fácil de actualizar",
-"Funciones avanzadas según las necesidades del negocio",
+        t("Base de datos para guardar información"),
+t("Panel privado para administrar el sitio"),
+t("Blog fácil de actualizar"),
+t("Funciones avanzadas según las necesidades del negocio"),
 
       ],
       link: "/servicios/plan-2",
     },
     {
       id: "plan-3",
-      title: "Plan 3: Sitio + Redes Sociales",
-      description: "Ideal para negocios que quieren presencia digital completa.",
+      title: t("Plan 3: Sitio + Redes Sociales"),
+      description: t("Ideal para negocios que quieren presencia digital completa."),
       features: [
-"Página web incluida",
-"Administración de redes sociales",
-"Creación de contenido profesional",
-"Reportes mensuales de resultados",
+t("Página web incluida"),
+t("Administración de redes sociales"),
+t("Creación de contenido profesional"),
+t("Reportes mensuales de resultados"),
 
       ],
       link: "/servicios/plan-3",
@@ -53,11 +55,8 @@ export default function ServicesSection() {
     <section id="servicios" className="services-section">
       <div className="services-container">
         <div className="services-header">
-          <h2 className="services-title">Nuestros Servicios</h2>
-          <p className="services-subtitle">
-            Ofrecemos diferentes planes para adaptarnos a las necesidades de tu
-            negocio.
-          </p>
+          <h2 className="services-title">{t("Nuestros Servicios")}</h2>
+          <p className="services-subtitle">{t("Ofrecemos diferentes planes para adaptarnos a las necesidades de tu negocio.")}</p>
         </div>
 
         <div className="services-grid">
@@ -72,17 +71,13 @@ export default function ServicesSection() {
                 ))}
               </ul>
 
-              <Link to={service.link} className="service-card-link">
-                Ver más detalles →
-              </Link>
+              <Link to={service.link} className="service-card-link">{t("Ver más detalles →")}</Link>
             </div>
           ))}
         </div>
 
         <div className="services-cta">
-          <Link to="/servicios" className="services-btn">
-            Ver todos los planes
-          </Link>
+          <Link to="/servicios" className="services-btn">{t("Ver todos los planes")}</Link>
         </div>
       </div>
     </section>

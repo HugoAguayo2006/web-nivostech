@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
@@ -34,16 +35,17 @@ function AppRoutes() {
 }
 
 export default function App() {
+  const { t, i18n } = useTranslation();
   return (
     <>
       {/* ===== SEO GLOBAL ===== */}
       <Helmet>
-        <html lang="es" />
+        <html lang={i18n.resolvedLanguage} />
         <title>NIVOSTECH</title>
 
         <meta
           name="description"
-          content="NIVOSTECH ofrece soluciones tecnológicas: desarrollo web, innovación digital y servicios a la medida."
+          content={t("NIVOSTECH ofrece soluciones tecnológicas: desarrollo web, innovación digital y servicios a la medida.")}
         />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="NIVOSTECH" />
@@ -54,7 +56,7 @@ export default function App() {
         <meta property="og:title" content="NIVOSTECH" />
         <meta
           property="og:description"
-          content="Innovación, desarrollo web y soluciones tecnológicas a la medida."
+          content={t("Innovación, desarrollo web y soluciones tecnológicas a la medida.")}
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.nivostech.com/" />
@@ -68,7 +70,7 @@ export default function App() {
         <meta name="twitter:title" content="NIVOSTECH" />
         <meta
           name="twitter:description"
-          content="Soluciones tecnológicas modernas y escalables."
+          content={t("Soluciones tecnológicas modernas y escalables.")}
         />
         <meta
           name="twitter:image"
